@@ -35,9 +35,41 @@ over
 
 ```
 
-#Parents
+###Parents
 每一个"greenlet"都有一个"父greenlet"。在"greenlet"创建的时候如果没有指定的话会自动初始化一个"父greenlet"（**相当于将parent指定为greenlet.getcurrent()**， 该参数可以在任何时候更改），创建的位置所属的"greenlet"即是它的"父greenlet"。"父greenlet"的作用是当"greenlet"执行完毕"死"的时候会继续执行（相当于switch向"父greenlet"）。
 
 "greenlet"组织成树的形状，最顶层的代码并不是运行在一个自定义的"greenlet"中而是在一个隐式的main "greenlet"中运行，它是整棵树的"root"。
 
 在刚才的例子中，gr1和gr2的父"greenlet"都是main "greenlet"，当它们执行完毕后便会switch回"main"。
+
+```python
+from greenlet import greenlet
+
+def test1():
+    print 12
+    gr2.switch()
+    print 34
+
+def test2():
+    print 56
+    gr1.switch()
+    print 78
+
+gr2 = greenlet(test2)
+gr1 = greenlet(test1, parent=gr2)
+gr1.switch()
+print 'over'
+
+
+output:
+12
+56
+34
+78
+over
+
+
+```
+
+未捕获的异常也会传播到父亲那。例如，如果一开始test2()含有一个排印错误，它会触发一个``NameError``然后杀掉gr2，然后异常直接返回给"main"。trackback会显示test2而不是test1。记住，switch不是调用，但会在平行的"stack containers"中交替运行，还有"parent"参数定义依据栈的逻辑下次调用哪个。
+
