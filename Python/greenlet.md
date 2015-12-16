@@ -39,7 +39,7 @@ over
 
 ###Parents
 
-每一个`greenlet`都有一个"父greenlet"。在`greenlet`创建的时候如果没有指定的话会自动初始化一个"父greenlet"（**相当于将parent指定为greenlet.getcurrent()**， 该参数可以在任何时候更改），创建的位置所属的`greenlet`即是它的"父greenlet"。"父greenlet"的作用是当`greenlet`执行完毕"死"的时候会继续执行（相当于switch向"父greenlet"）。
+每一个`greenlet`都有一个`父greenlet`。在`greenlet`创建的时候如果没有指定的话会自动初始化一个`父greenlet`（**相当于将parent指定为greenlet.getcurrent()**， 该参数可以在任何时候更改），创建的位置所属的`greenlet`即是它的`父greenlet`。`父greenlet`的作用是当`greenlet`执行完毕"死"的时候会继续执行（相当于switch向`父greenlet`）。
 
 `greenlet`组织成树的形状，最顶层的代码并不是运行在一个自定义的`greenlet`中而是在一个隐式的main `greenlet`中运行，它是整棵树的"root"。
 
@@ -79,9 +79,9 @@ over
 ###Instantiation(实例化)
 `greenlet.greenlet`是一个greenlet类型，它支持以下操作：
 
-* `greenlet(run=None, parent=None)`：创建一个新的greenlet对象（但并不允许它）。`run`是用来回调调用的，`parent`是用来指定"父greenlet"的，默认值是当前的greenlet对象。
+* `greenlet(run=None, parent=None)`：创建一个新的greenlet对象（但并不允许它）。`run`是用来回调调用的，`parent`是用来指定`父greenlet`的，默认值是当前的greenlet对象。
 * `greenlet.getcurrent()`：返回当前greenlet对象（eg：谁调用的当前函数）。
-* `greenlet.GreenletExit`：该异常比较特殊并不会传递到"父greenlet"（？）；它可以用来杀死一个单一的greenlet。
+* `greenlet.GreenletExit`：该异常比较特殊并不会传递到`父greenlet`（？）；它可以用来杀死一个单一的greenlet。
 
 
 ###Switching
