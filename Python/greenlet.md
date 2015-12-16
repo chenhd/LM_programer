@@ -116,3 +116,4 @@ over
 注意，任何尝试切换到已经死的`greenlet`的实际都会切换到它们的`父greenlet`，以此类推，最后是`main greenlet`。(The final parent is the "main" greenlet, which is never dead.)
 
 ###Greenlets and Python threads
+`greenlet`可以与Python的线程结合到一起；在这种情况下，每个线程包含一个独立的`mian greenlet`以及整个树的`子greenlet`，不可能将属于不同线程的`greenlet`混合或在它们之间切换。
