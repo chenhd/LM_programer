@@ -1,6 +1,7 @@
 #Markdown
 
 link：    [markdown-basics](https://help.github.com/articles/markdown-basics/)
+
 PS：规则比较复杂，多用空行隔开
 
 ##Paragraphs(段落)
@@ -29,6 +30,7 @@ PS：规则比较复杂，多用空行隔开
 ##Lists
 ###Unordered lists
 你可以在列表元素之前使用`*`或`-`来制作无序列表(后需接空格)
+
 * item
 * item
 * item
@@ -80,3 +82,4 @@ what is x
 >`[markdown-basics](https://help.github.com/articles/markdown-basics/)`
 
 [markdown-basics](https://help.github.com/articles/markdown-basics/)
+
