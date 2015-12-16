@@ -71,5 +71,5 @@ over
 
 ```
 
-未捕获的异常也会传播到父亲那。例如，如果一开始test2()含有一个排印错误，它会触发一个``NameError``然后杀掉gr2，然后异常直接返回给"main"。trackback会显示test2而不是test1。记住，switch不是调用，但会在平行的"stack containers"中交替运行，还有"parent"参数定义依据栈的逻辑下次调用哪个。
+未捕获的异常也会传播到上一层。例如，如果一开始test2()含有一个排印错误，它会触发一个``NameError``然后杀掉gr2，然后异常直接返回给"main"。trackback会显示test2而不是test1。记住，switch不是调用，但会在平行的"stack containers"中交替运行，还有"parent"参数定义依据栈的逻辑下次调用哪个。
 
